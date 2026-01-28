@@ -7,7 +7,7 @@ export interface InfoCard {
   icon: LucideIcon;
 }
 
-export const aboutText = `I'm a passionate developer and vibecoder who turns ideas into reality through code. 
+export const aboutText = `I'm a passionate student who turns ideas into reality through code. 
 I specialize in building clean, efficient, and user-friendly applications. 
 My approach combines technical skills with creativity, leveraging AI tools to enhance productivity and deliver exceptional results.`;
 
