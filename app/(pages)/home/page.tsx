@@ -13,9 +13,9 @@ export default function HomePage() {
           <div className="neo-hero__copy">
             <p className="neo-hero__identity">Lance · Computer Science · Philippines</p>
             <h1 id="home-title">
-              Break it.{" "}
-              <span className="neo-hero__mark">Fix it.</span>{" "}
-              <span className="neo-hero__mark neo-hero__mark--delay">
+              <span className="neo-hero__mark">Break it.</span>
+              <span className="neo-hero__mark neo-hero__mark--delay">Fix it.</span>
+              <span className="neo-hero__mark neo-hero__mark--delay-2">
                 Ship it.<span className="neo-hero__starburst" aria-hidden="true" />
               </span>
             </h1>
