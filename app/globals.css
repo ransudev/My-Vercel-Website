@@ -592,6 +592,7 @@ textarea {
 .neo-hero__mark {
   position: relative;
   display: block;
+  width: fit-content;
   white-space: nowrap;
 }
 
