@@ -532,6 +532,8 @@ textarea {
 
 .neo-hero__inner {
   flex: 1 1 auto;
+  width: min(100%, 70rem);
+  margin-inline: auto;
   position: relative;
   z-index: 2;
   min-height: 0;
@@ -554,8 +556,7 @@ textarea {
 
 .neo-hero__grid {
   display: grid;
-  width: min(100%, 70rem);
-  margin-inline: auto;
+  width: 100%;
   gap: var(--space-2xl);
   align-items: end;
 }

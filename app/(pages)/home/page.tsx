@@ -9,10 +9,9 @@ export default function HomePage() {
     <section className="neo-hero" aria-labelledby="home-title">
       <HeroDecor />
       <div className="page neo-hero__inner">
-        <p className="neo-hero__identity">Lance · Computer Science · Philippines</p>
-
         <div className="neo-hero__grid">
           <div className="neo-hero__copy">
+            <p className="neo-hero__identity">Lance · Computer Science · Philippines</p>
             <h1 id="home-title">
               Break it.{" "}
               <span className="neo-hero__mark">Fix it.</span>{" "}
@@ -20,14 +19,14 @@ export default function HomePage() {
                 Ship it.<span className="neo-hero__starburst" aria-hidden="true" />
               </span>
             </h1>
-            <p>
-                Built with clear thinking and an appetite for difficult problems.
-            </p>
+            <p>Built with clear thinking and an appetite for difficult problems.</p>
             <div className="neo-hero__actions">
               <Link href="/skills" className="btn btn--primary">
                 See my skills <ArrowRight size={20} aria-hidden="true" />
               </Link>
-              <Link href="/contact" className="btn btn--outline">Talk to me</Link>
+              <Link href="/contact" className="btn btn--outline">
+                Talk to me
+              </Link>
             </div>
           </div>
 
