@@ -406,7 +406,7 @@ textarea {
   pointer-events: none;
   background-image: radial-gradient(circle, var(--color-brand-deep) 1.15px, transparent 1.25px);
   background-size: 24px 24px;
-  opacity: 0.08;
+  opacity: 0.14;
 }
 
 .document-page > *,
@@ -509,6 +509,10 @@ textarea {
   --decor-parallax-y: 0px;
   --decor-parallax-x-inverse: 0px;
   --decor-parallax-y-inverse: 0px;
+  --decor-parallax-x-slow: 0px;
+  --decor-parallax-y-slow: 0px;
+  --decor-parallax-x-inverse-fast: 0px;
+  --decor-parallax-y-inverse-fast: 0px;
   position: relative;
   min-height: calc(100dvh - 68px);
   overflow: clip;
@@ -527,7 +531,7 @@ textarea {
   pointer-events: none;
   background-image: radial-gradient(circle, var(--color-brand-deep) 1.15px, transparent 1.25px);
   background-size: 24px 24px;
-  opacity: 0.11;
+  opacity: 0.18;
 }
 
 .neo-hero__inner {
@@ -725,7 +729,6 @@ textarea {
   border: var(--rule-heavy) solid var(--color-pop-blue);
   box-shadow: var(--shadow-hard-sm);
   transform: rotate(7deg);
-  animation: decor-drift-y 19s var(--ease-in-out) infinite;
 }
 
 .hero-decor__shape--slab {
@@ -742,7 +745,6 @@ textarea {
   background: var(--color-brand-primary);
   box-shadow: var(--shadow-hard-sm);
   transform: rotate(-5deg);
-  animation: decor-drift-x 23s var(--ease-in-out) infinite;
 }
 
 .hero-decor__shape--plus {
@@ -755,7 +757,6 @@ textarea {
 
 .hero-decor__shape--plus i {
   position: relative;
-  animation: decor-drift-y 17s var(--ease-in-out) -6s infinite reverse;
 }
 
 .hero-decor__shape--plus i::before,
@@ -833,14 +834,50 @@ textarea {
   to { transform: scaleX(1); }
 }
 
-@keyframes decor-drift-y {
-  0%, 100% { transform: translateY(0) rotate(7deg); }
-  50% { transform: translateY(-8px) rotate(7deg); }
+.hero-decor__shape--circle {
+  inset-block-start: 18%;
+  inset-inline-start: 5%;
+  width: clamp(3.5rem, 5vw, 5rem);
+  aspect-ratio: 1;
+  opacity: 0.22;
+  transform: translate3d(var(--decor-parallax-x-slow), var(--decor-parallax-y-slow), 0);
 }
 
-@keyframes decor-drift-x {
-  0%, 100% { transform: translateX(0) rotate(-5deg); }
-  50% { transform: translateX(7px) rotate(-5deg); }
+.hero-decor__shape--circle i {
+  border: var(--rule-heavy) solid var(--color-pop-pink);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-hard-sm);
+}
+
+.hero-decor__shape--diamond {
+  inset-block-end: 16%;
+  inset-inline-end: 7%;
+  width: clamp(3.5rem, 5.5vw, 5.5rem);
+  aspect-ratio: 1;
+  opacity: 0.2;
+  transform: translate3d(var(--decor-parallax-x-inverse-fast), var(--decor-parallax-y-inverse-fast), 0);
+}
+
+.hero-decor__shape--diamond i {
+  border: var(--rule-hair) solid var(--color-ink);
+  background: var(--color-pop-blue);
+  box-shadow: var(--shadow-hard-sm);
+  transform: rotate(45deg);
+}
+
+.hero-decor__shape--dot {
+  inset-block-start: 52%;
+  inset-inline-start: 9%;
+  width: clamp(1.25rem, 2vw, 2rem);
+  aspect-ratio: 1;
+  opacity: 0.28;
+  transform: translate3d(var(--decor-parallax-x-slow), var(--decor-parallax-y-slow), 0);
+}
+
+.hero-decor__shape--dot i {
+  border-radius: var(--radius-pill);
+  background: var(--color-pop-pink);
+  box-shadow: var(--shadow-hard-sm);
 }
 
 @keyframes neo-marquee {
@@ -1398,7 +1435,7 @@ textarea {
 
   .neo-hero::before {
     background-size: 20px 20px;
-    opacity: 0.075;
+    opacity: 0.14;
   }
 
   .document-page::before,
@@ -1406,7 +1443,7 @@ textarea {
   .projects-page::before,
   .contact-page::before {
     background-size: 20px 20px;
-    opacity: 0.07;
+    opacity: 0.12;
   }
 
   .hero-decor__shape {
