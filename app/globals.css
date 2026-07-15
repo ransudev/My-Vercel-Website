@@ -1357,6 +1357,7 @@ textarea {
   .fact-list__row:hover span { color: var(--color-brand-primary); transform: translateX(var(--space-2xs)); }
   .field input:hover,
   .field textarea:hover { background: var(--color-paper-3); }
+  .skill-group__list li:hover { transform: translateY(-3px); box-shadow: var(--shadow-hard-sm); border-color: var(--color-ink); }
   .direct-link:hover { color: var(--color-brand-highlight); transform: translateX(var(--space-2xs)); }
 }
 
