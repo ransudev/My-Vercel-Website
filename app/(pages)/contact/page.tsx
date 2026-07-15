@@ -1,183 +1,99 @@
 "use client";
 
 import { useState } from "react";
-import { Send, Mail, MessageCircle } from "lucide-react";
-import { SectionTitle, Button, SocialLink } from "../../components/ui";
+import { Mail, Send } from "lucide-react";
+import Button from "../../components/ui/Button";
 import { socialLinks, contactInfo } from "../../data/socials";
-import Squares from "../../components/ui/Squares";
+
+type FieldName = "name" | "email" | "message";
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [touched, setTouched] = useState<Record<FieldName, boolean>>({ name: false, email: false, message: false });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+  const errors: Record<FieldName, string> = {
+    name: formData.name.trim() ? "" : "Add your name so I know who is writing.",
+    email: EMAIL_PATTERN.test(formData.email) ? "" : "Use a complete email address, such as name@example.com.",
+    message: formData.message.trim().length >= 10 ? "" : "Add at least 10 characters so I understand the request.",
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Create mailto link with form data
-    const mailtoLink = `mailto:${contactInfo.email}?subject=Portfolio Contact from ${formData.name}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    window.location.href = mailtoLink;
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = event.target;
+    setFormData((current) => ({ ...current, [name]: value }));
+  };
+
+  const handleBlur = (field: FieldName) => {
+    setTouched((current) => ({ ...current, [field]: true }));
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setTouched({ name: true, email: true, message: true });
+    if (Object.values(errors).some(Boolean)) return;
+
+    const subject = encodeURIComponent(`Portfolio contact from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`);
+    window.location.href = `mailto:${contactInfo.email}?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-slate-950">
-        <Squares
-          direction="diagonal"
-          speed={0.5}
-          squareSize={40}
-          borderColor="#271E37"
-          hoverFillColor="#222222"
-        />
-      </div>
-      
-      <div className="container mx-auto px-4 md:px-6 w-full relative z-10">
-        <SectionTitle
-          title="Get In Touch"
-          subtitle="Have a question or want to work together? Let's connect!"
-        />
+    <div className="page contact-page">
+      <header className="page-intro">
+        <h1 className="page-title">Contact</h1>
+        <p className="page-lede">A project, a question, or a useful conversation—send the details directly.</p>
+      </header>
 
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
-            {/* Contact Form */}
-            <div className="bg-slate-800 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-700">
-              <h3 className="text-xl font-semibold text-white mb-6">
-                Send a Message
-              </h3>
-
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-slate-300 mb-2"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-600 bg-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-slate-300 mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-600 bg-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-sm font-medium text-slate-300 mb-2"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 rounded-lg border border-slate-600 bg-slate-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all resize-none"
-                    placeholder="Your message..."
-                  />
-                </div>
-
-                <Button type="submit" variant="primary" icon={Send} iconPosition="right" className="w-full">
-                  Send Message
-                </Button>
-              </form>
+      <div className="contact-split">
+        <section className="contact-panel" aria-labelledby="contact-form-title" data-reveal="group">
+          <h2 id="contact-form-title">Write a message</h2>
+          <form onSubmit={handleSubmit} noValidate className="contact-form">
+            <div className="field" data-state={touched.name ? (errors.name ? "error" : "success") : undefined}>
+              <label htmlFor="name">Name</label>
+              <input id="name" name="name" autoComplete="name" value={formData.name} onChange={handleChange} onBlur={() => handleBlur("name")} aria-invalid={touched.name && Boolean(errors.name)} aria-describedby="name-help" required />
+              <p id="name-help" className="field__help" aria-live="polite">{touched.name && errors.name ? errors.name : "How should I address you?"}</p>
             </div>
 
-            {/* Contact Info */}
-            <div className="flex flex-col justify-center">
-              <div className="bg-slate-800 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-700 mb-6">
-                <h3 className="text-xl font-semibold text-white mb-6">
-                  Contact Information
-                </h3>
+            <div className="field" data-state={touched.email ? (errors.email ? "error" : "success") : undefined}>
+              <label htmlFor="email">Email address</label>
+              <input id="email" name="email" type="email" autoComplete="email" value={formData.email} onChange={handleChange} onBlur={() => handleBlur("email")} aria-invalid={touched.email && Boolean(errors.email)} aria-describedby="email-help" required placeholder="name@example.com" />
+              <p id="email-help" className="field__help" aria-live="polite">{touched.email && errors.email ? errors.email : "I’ll reply to this address."}</p>
+            </div>
 
-                <div className="space-y-4">
-                  <a
-                    href={`mailto:${contactInfo.email}`}
-                    className="flex items-center gap-4 p-4 rounded-lg bg-slate-700/50 hover:bg-violet-900/20 transition-colors group"
-                  >
-                    <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
-                      <Mail className="text-white" size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-400">Email</p>
-                      <p className="text-white font-medium group-hover:text-violet-400 transition-colors">
-                        {contactInfo.email}
-                      </p>
-                    </div>
-                  </a>
+            <div className="field" data-state={touched.message ? (errors.message ? "error" : "success") : undefined}>
+              <label htmlFor="message">Message</label>
+              <textarea id="message" name="message" rows={6} value={formData.message} onChange={handleChange} onBlur={() => handleBlur("message")} aria-invalid={touched.message && Boolean(errors.message)} aria-describedby="message-help" required placeholder="Project, timeline, and what you need." />
+              <p id="message-help" className="field__help" aria-live="polite">{touched.message && errors.message ? errors.message : "Include enough context for a useful first reply."}</p>
+            </div>
 
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-slate-700/50">
-                    <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-lg flex items-center justify-center">
-                      <MessageCircle className="text-white" size={20} />
-                    </div>
-                    <div>
-                      <p className="text-sm text-slate-400">Discord</p>
-                      <p className="text-white font-medium">
-                        {contactInfo.discord}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <Button type="submit" variant="primary" icon={Send} iconPosition="right">Open email draft</Button>
+          </form>
+        </section>
 
-              {/* Social Links */}
-              <div className="bg-slate-800 rounded-2xl p-6 md:p-8 shadow-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-4">
-                  Connect with me
-                </h3>
-                <div className="flex gap-4">
-                  {socialLinks.map((social) => (
-                    <SocialLink
-                      key={social.name}
-                      href={social.url}
-                      icon={social.icon}
-                      label={social.name}
-                      size="lg"
-                    />
-                  ))}
-                </div>
-              </div>
+        <aside className="contact-panel contact-panel--direct" aria-labelledby="direct-contact-title" data-reveal="group">
+          <div>
+            <p className="meta-label">Direct channels</p>
+            <h2 id="direct-contact-title">Prefer fewer fields?</h2>
+            <p>Email works. GitHub works. Discord works too.</p>
+          </div>
+          <div className="direct-links">
+            <a href={`mailto:${contactInfo.email}`} className="direct-link">
+              <Mail size={20} aria-hidden="true" />
+              <span><small>Email</small>{contactInfo.email}</span>
+            </a>
+            {socialLinks.filter((social) => social.url.startsWith("http")).map((social) => (
+              <a key={social.name} href={social.url} target="_blank" rel="noopener noreferrer" className="direct-link">
+                <social.icon size={20} aria-hidden="true" />
+                <span><small>{social.name}</small>ransudev</span>
+              </a>
+            ))}
+            <div className="direct-link direct-link--static">
+              <span aria-hidden="true">#</span>
+              <span><small>Discord</small>{contactInfo.discord}</span>
             </div>
           </div>
-        </div>
+        </aside>
       </div>
-    </section>
+    </div>
   );
 }

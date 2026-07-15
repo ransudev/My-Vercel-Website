@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local AI workspace folders
+.hallmark/
+.impeccable/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

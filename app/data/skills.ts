@@ -1,4 +1,4 @@
-import { Code, Database, Terminal, Sparkles, Layout, Server } from "lucide-react";
+import { Terminal, Sparkles, Layout, Server } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 export interface Skill {
@@ -29,6 +29,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: "Python" },
       { name: "Java" },
+      { name: "Rust" },
       { name: "SQL" },
     ],
   },

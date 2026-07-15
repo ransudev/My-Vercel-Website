@@ -24,7 +24,7 @@ export const infoCards: InfoCard[] = [
   },
   {
     title: "Focus",
-    value: "Full Stack Development",
+    value: "Systems & Tooling Development",
     icon: Code,
   },
   {

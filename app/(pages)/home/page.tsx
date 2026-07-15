@@ -1,95 +1,51 @@
-"use client";
-
-import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown } from "lucide-react";
-import { Button } from "../../components/ui";
-import Squares from "../../components/ui/Squares";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import HeroDecor from "../../components/ui/HeroDecor";
+import MarqueeDivider from "../../components/ui/MarqueeDivider";
 
 export default function HomePage() {
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
-    >
-      {/* Animated Squares Background */}
-      <div className="absolute inset-0 bg-slate-950">
-        <Squares
-          speed={0.5}
-          squareSize={40}
-          direction="diagonal"
-          borderColor="#271E37"
-          hoverFillColor="#222222"
-        />
-      </div>
+    <section className="neo-hero" aria-labelledby="home-title">
+      <HeroDecor />
+      <div className="page neo-hero__inner">
+        <p className="neo-hero__identity">Lance · Computer Science · Philippines</p>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 h-full flex items-center justify-center">
-        <div className="w-full max-w-6xl mx-auto py-20">
-          {/* 2-Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            
-            {/* LEFT: Text Content */}
-            <div className="text-center lg:text-left order-2 lg:order-1">
-              {/* Name and Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 text-white">
-                Hi, I&apos;m{" "}
-                <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
-                  Lance
-                </span>
-              </h1>
-
-              <p className="text-xl md:text-2xl text-slate-300 mb-4">
-                Computer Science Student
-              </p>
-
-              <p className="text-base md:text-lg text-slate-400 mb-8">
-                Consistency is key.
-              </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button href="/projects" variant="primary">
-                  View Projects
-                </Button>
-                <Button href="/contact" variant="outline">
-                  Contact Me
-                </Button>
-              </div>
+        <div className="neo-hero__grid">
+          <div className="neo-hero__copy">
+            <h1 id="home-title">
+              Break it.{" "}
+              <span className="neo-hero__mark">Fix it.</span>{" "}
+              <span className="neo-hero__mark neo-hero__mark--delay">
+                Ship it.<span className="neo-hero__starburst" aria-hidden="true" />
+              </span>
+            </h1>
+            <p>
+                Full-stack applications, Java systems, and focused tools made with clear thinking and an appetite for difficult problems.
+            </p>
+            <div className="neo-hero__actions">
+              <Link href="/skills" className="btn btn--primary">
+                See my skills <ArrowRight size={20} aria-hidden="true" />
+              </Link>
+              <Link href="/contact" className="btn btn--outline">Talk to me</Link>
             </div>
-
-            {/* RIGHT: Profile Image Card */}
-            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative w-full max-w-sm">
-                <div className="relative rounded-2xl overflow-hidden border-2 border-violet-500/50 shadow-2xl shadow-violet-500/20 hover:shadow-violet-500/40 transition-all duration-300 hover:scale-105">
-                  <div className="aspect-[3/4] relative bg-gradient-to-br from-violet-500/10 to-fuchsia-500/10">
-                    <Image
-                      src="/profile.png"
-                      alt="Ransu Profile"
-                      fill
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-2xl pointer-events-none"></div>
-                </div>
-              </div>
-            </div>
-
           </div>
+
+          <aside className="neo-hero__manifest" aria-label="Current focus">
+            <div className="neo-hero__avatar">
+              <Image
+                src="/lance-pixel-avatar.png"
+                alt="Pixel portrait of Lance"
+                width={256}
+                height={256}
+                priority
+              />
+            </div>
+          </aside>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-        <Link
-          href="/about"
-          className="text-slate-400 hover:text-violet-400 transition-colors"
-          aria-label="Go to about page"
-        >
-          <ArrowDown size={28} />
-        </Link>
-      </div>
+      <MarqueeDivider className="neo-strip--hero" />
     </section>
   );
 }

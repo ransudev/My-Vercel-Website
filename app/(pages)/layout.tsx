@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
-import { Navbar, Footer } from "../components/sections";
+import Navbar from "../components/sections/Navbar";
+import Footer from "../components/sections/Footer";
+import MotionObserver from "../components/ui/MotionObserver";
 
 export default function PagesLayout({
   children,
@@ -9,7 +10,8 @@ export default function PagesLayout({
   return (
     <>
       <Navbar />
-      <main className="min-h-screen">{children}</main>
+      <main id="main-content" className="site-main">{children}</main>
+      <MotionObserver />
       <Footer />
     </>
   );
