@@ -21,7 +21,7 @@ export default function HomePage() {
               </span>
             </h1>
             <p>
-                Full-stack applications, Java systems, and focused tools made with clear thinking and an appetite for difficult problems.
+                Built with clear thinking and an appetite for difficult problems.
             </p>
             <div className="neo-hero__actions">
               <Link href="/skills" className="btn btn--primary">
