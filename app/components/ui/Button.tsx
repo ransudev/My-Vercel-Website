@@ -6,6 +6,7 @@ interface ButtonProps {
   href?: string;
   onClick?: () => void;
   icon?: LucideIcon;
+  iconSize?: number;
   iconPosition?: "left" | "right";
   className?: string;
   type?: "button" | "submit" | "reset";
@@ -19,6 +20,7 @@ export default function Button({
   href,
   onClick,
   icon: Icon,
+  iconSize = 20,
   iconPosition = "left",
   className = "",
   type = "button",
@@ -35,9 +37,9 @@ export default function Button({
 
   const content = (
     <>
-      {Icon && iconPosition === "left" && <Icon size={18} aria-hidden="true" />}
+      {Icon && iconPosition === "left" && <Icon size={iconSize} aria-hidden="true" />}
       {children}
-      {Icon && iconPosition === "right" && <Icon size={18} aria-hidden="true" />}
+      {Icon && iconPosition === "right" && <Icon size={iconSize} aria-hidden="true" />}
     </>
   );
 

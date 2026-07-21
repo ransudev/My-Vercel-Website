@@ -1,12 +1,11 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import { aboutText, infoCards } from "../../data/about";
 
 export default function AboutPage() {
   return (
-    <article className="page document-page">
-      <header className="page-intro">
+    <article id="about" className="page document-page scroll-section">
+      <header className="page-intro" data-reveal="heading">
         <h1 className="page-title">About</h1>
         <p className="page-lede">A computer science student turning ideas into practical software.</p>
       </header>
@@ -28,7 +27,7 @@ export default function AboutPage() {
 
         <p className="document-page__close" data-reveal="copy">
           The work is still growing. The standard stays the same: understand the problem, build the smallest useful answer, and improve it with evidence. {" "}
-          <Link href="/contact" className="text-link">Start a conversation <ArrowRight size={16} aria-hidden="true" /></Link>
+          <a href="#contact" className="text-link">Start a conversation <ArrowRight size={18} aria-hidden="true" /></a>
         </p>
       </div>
     </article>

@@ -28,7 +28,7 @@
   --color-success: oklch(0.48 0.12 145);
   --color-transparent: transparent;
 
-  --font-display: var(--font-geist-sans);
+  --font-display: var(--font-outfit);
   --font-body: var(--font-geist-sans);
   --font-outlier: var(--font-geist-mono);
 

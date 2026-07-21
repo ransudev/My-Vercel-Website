@@ -46,7 +46,7 @@ export const skillCategories: SkillCategory[] = [
     category: "Special Skills",
     icon: Sparkles,
     skills: [
-      { name: "AI Prompting" },
+      { name: "AI-Assisted Development" },
       { name: "Problem Solving" },
       { name: "Quick Learning" },
     ],

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { socialLinks } from "../../data/socials";
 
 export default function Footer() {
@@ -8,7 +7,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="site-footer__inner">
         <div className="site-footer__meta">
-          <Link href="/home" className="site-footer__brand">ransu.dev</Link>
+          <a href="#home" className="site-footer__brand">ransu.dev</a>
           <div className="site-footer__links" aria-label="Social links">
             {socialLinks.map((social) => (
               <a
@@ -21,7 +20,7 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <span>© {currentYear} Lance</span>
+          <span>© {currentYear} ransudev</span>
         </div>
       </div>
     </footer>

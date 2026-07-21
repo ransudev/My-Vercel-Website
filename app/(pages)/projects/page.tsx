@@ -4,9 +4,9 @@ import { projects } from "../../data/projects";
 
 export default function ProjectsPage() {
   return (
-    <div className="page projects-page">
-      <header className="page-intro">
-        <h1 className="page-title">Projects</h1>
+    <section id="projects" className="page projects-page scroll-section" aria-labelledby="projects-title">
+      <header className="page-intro" data-reveal="heading">
+        <h1 id="projects-title" className="page-title">Projects</h1>
         <p className="page-lede">Selected builds across automation, environmental education, and Minecraft modding.</p>
       </header>
 
@@ -39,6 +39,6 @@ export default function ProjectsPage() {
           </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

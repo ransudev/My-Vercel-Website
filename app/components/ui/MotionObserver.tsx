@@ -1,13 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 const REVEAL_SELECTOR = "[data-reveal]";
 
 export default function MotionObserver() {
-  const pathname = usePathname();
-
   useEffect(() => {
     const targets = Array.from(document.querySelectorAll<HTMLElement>(REVEAL_SELECTOR));
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -42,7 +39,7 @@ export default function MotionObserver() {
     });
 
     return () => observer.disconnect();
-  }, [pathname]);
+  }, []);
 
   return null;
 }

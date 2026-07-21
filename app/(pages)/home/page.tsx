@@ -1,36 +1,29 @@
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
-import HeroDecor from "../../components/ui/HeroDecor";
 import MarqueeDivider from "../../components/ui/MarqueeDivider";
+import HeroDecor from "../../components/ui/HeroDecor";
 
 export default function HomePage() {
   return (
-    <section className="neo-hero" aria-labelledby="home-title">
+    <section id="home" className="neo-hero scroll-section" aria-labelledby="home-title">
       <HeroDecor />
       <div className="page neo-hero__inner">
         <div className="neo-hero__grid">
           <div className="neo-hero__copy">
-            <p className="neo-hero__identity">Lance · Computer Science · Philippines</p>
             <h1 id="home-title">
               <span className="neo-hero__mark">Break it.</span>
               <span className="neo-hero__mark neo-hero__mark--delay">Fix it.</span>
-              <span className="neo-hero__mark neo-hero__mark--delay-2">
-                Ship it.<span className="neo-hero__starburst" aria-hidden="true" />
-              </span>
+              <span className="neo-hero__mark neo-hero__mark--delay-2">Ship it.</span>
             </h1>
             <p>Built with clear thinking and an appetite for difficult problems.</p>
             <div className="neo-hero__actions">
-              <Link href="/skills" className="btn btn--primary">
+              <a href="#skills" className="btn btn--outline neo-hero__primary-action">
                 See my skills <ArrowRight size={20} aria-hidden="true" />
-              </Link>
-              <Link href="/contact" className="btn btn--outline">
-                Talk to me
-              </Link>
+              </a>
             </div>
           </div>
 
-          <aside className="neo-hero__manifest" aria-label="Current focus">
+          <aside className="neo-hero__manifest" aria-label="About Lance">
             <div className="neo-hero__avatar">
               <Image
                 src="/lance-pixel-avatar.png"
@@ -40,6 +33,9 @@ export default function HomePage() {
                 priority
               />
             </div>
+            <a href="#about" className="neo-hero__about-link">
+              About me
+            </a>
           </aside>
         </div>
       </div>
