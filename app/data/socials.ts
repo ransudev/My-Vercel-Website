@@ -22,5 +22,5 @@ export const socialLinks: SocialLink[] = [
 
 export const contactInfo = {
   email: "ransu.email@gmail.com",
-  discord: "ransuog_",
+  discord: "ransudev",
 };
