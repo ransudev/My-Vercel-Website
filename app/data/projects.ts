@@ -27,7 +27,7 @@ export const projects: Project[] = [
   {
     id: 3,
     title: "JellyAddons",
-    description: "A Kotlin and Java Fabric mod adding quality-of-life addons for Hypixel SkyBlock, built as an earlier iteration of what later evolved into the Jelly project.",
+    description: "A Kotlin and Java Fabric mod adding quality-of-life addons for Hypixel SkyBlock",
     techStack: ["Kotlin", "Java", "Fabric Modding"],
     githubUrl: "https://github.com/ransudev/JellyAddons",
   },
